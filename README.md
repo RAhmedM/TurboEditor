@@ -14,7 +14,7 @@ Follow these steps to get TurboEdit up and running on your local machine:
 
 - Clone the repository: git clone https://github.com/RAhmedM/TurboEdit.git
 - Build the project using the provided Makefile using `make` or your preferred build system.
-Run the executable `TurboEditor` and start editing text files.
+Run the executable `./TurboEditor` and start editing text files.
 
 Refer to the Documentation for more detailed information on building, usage, and contributing.
 Contributing
