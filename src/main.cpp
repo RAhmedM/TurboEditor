@@ -24,10 +24,13 @@ void startRawMode()
     modified_terminos = original_terminos;
 
     //we turn off the echo flag on each keypress
-    modified_terminos.c_lflag &= ~(ECHO);
-
     //turning of canonical mode
-    modified_terminos.c_lflag &= ~(ICANON);
+    //turning of ctrl + z and ctrl + c
+
+    modified_terminos.c_lflag &= ~(ECHO | ICANON | ISIG);
+    
+    //Disable Ctrl-S and Ctrl-Q
+    modified_terminos.c_iflag &= ~(IXON);
 
     tcsetattr(STDIN_FILENO,TCSAFLUSH ,&modified_terminos);
 }
