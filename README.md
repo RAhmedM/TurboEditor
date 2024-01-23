@@ -13,8 +13,8 @@ TurboEdit is a simple and lightweight text editor implemented in C++. This proje
 Follow these steps to get TurboEdit up and running on your local machine:
 
 - Clone the repository: git clone https://github.com/RAhmedM/TurboEdit.git
-- Build the project using the provided Makefile or your preferred build system.
-Run the executable and start editing text files.
+- Build the project using the provided Makefile using `make` or your preferred build system.
+Run the executable `TurboEditor` and start editing text files.
 
 Refer to the Documentation for more detailed information on building, usage, and contributing.
 Contributing
