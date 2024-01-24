@@ -16,5 +16,6 @@ void disableRawMode();
 void startRawMode();
 char read_Key();
 void process_key();
+void clear_Screen();
 
 #endif
