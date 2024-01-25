@@ -1,5 +1,6 @@
 #include "terminal.h"
-
+#include "output.h"
+#include "input.h"
 
 
 

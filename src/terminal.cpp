@@ -1,4 +1,3 @@
-
 #include "terminal.h"
 
 
@@ -76,42 +75,4 @@ char read_Key()
         if (nread == -1 && errno != EAGAIN) halt("read");
     }
     return c;
-}
-
-//-------------OUTPUT-----------
-
-
-
-void clear_Screen() {
-    // The first byte is \x1b, which is the escape character, or 27 in decimal.
-    //Escape sequences always start with an escape character (27) followed by a [ character. 
-
-    /*
-        We are using the J command to clear the screen. 
-        Escape sequence commands take arguments, which come before the command. 
-        In this case the argument is 2, which says to clear the entire screen.
-        <esc>[1J would clear the screen up to where the cursor is,
-        and <esc>[0J would clear the screen from the cursor up to the end of the screen.
-    */
-
-    // the last argument is tells how many bytes are we are writing to the terminal
-    // in this case 4
-    write(STDOUT_FILENO, "\x1b[2J", 4);
-
-    // 3 byte escape sequence to reposition the cursor to the top of the screen
-    write(STDOUT_FILENO, "\x1b[H", 3);
-}
-
-//-------------INPUT------------
-void process_key()
-{
-    char c = read_Key();
-    //  std::cout << c << " : " << static_cast<int>(c) << "\r\n";
-    switch (c) {
-        case CTRL_KEY('q'):
-            write(STDOUT_FILENO, "\x1b[2J", 4);
-            write(STDOUT_FILENO, "\x1b[H", 3);
-            exit(0);
-            break;
-    }
 }
