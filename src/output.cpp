@@ -32,5 +32,6 @@ void clear_Screen() {
 
     draw_Arrows();
     write(STDOUT_FILENO, "\x1b[H", 3);
+    //sad
 }
 
