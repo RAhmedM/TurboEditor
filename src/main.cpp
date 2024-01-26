@@ -8,7 +8,6 @@ using namespace std;
 
 int main()
 {
-    cout << "--------------TurboEditor--------------" << "\r\n";
     startRawMode();
     while (1) {
         clear_Screen();
