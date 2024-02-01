@@ -1,4 +1,3 @@
-#include "../include/output.h"
 #include "../include/terminal.h"
 #include "../include/input.h"
 

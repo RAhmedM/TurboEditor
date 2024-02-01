@@ -1,8 +1,9 @@
 #include "terminal.h"
 
 
-//pre-defined Structure to store Raw terminal input
-struct termios original_terminos;
+
+//Stucture to store global terminal state
+struct editorConfig E;
 
 //prints an error message and stops the execution
 void halt(const char *s) 
@@ -16,7 +17,7 @@ void halt(const char *s)
 
 void disableRawMode()
 {
-    if(tcsetattr(STDIN_FILENO,TCSAFLUSH ,&original_terminos) == -1)
+    if(tcsetattr(STDIN_FILENO,TCSAFLUSH ,&E.original_terminos) == -1)
         halt("tcsetattr");
     
 }
@@ -26,12 +27,12 @@ void startRawMode()
     struct termios modified_terminos;
     
     //gets terminal Attributes
-    if(tcgetattr(STDIN_FILENO, &original_terminos) == -1)
+    if(tcgetattr(STDIN_FILENO, &E.original_terminos) == -1)
         halt("tcgetattr");
 
     atexit(disableRawMode);
 
-    modified_terminos = original_terminos;
+    modified_terminos = E.original_terminos;
 
     //we turn off the echo flag
     //turning of canonical mode
@@ -76,3 +77,18 @@ char read_Key()
     }
     return c;
 }
+
+
+int getWindowSize(int *rows, int *cols) {
+  struct winsize ws;
+  if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1 || ws.ws_col == 0) {
+    return -1;
+  } else {
+    *cols = ws.ws_col;
+    *rows = ws.ws_row;
+    return 0;
+  }
+}
+
+
+/**init*/
